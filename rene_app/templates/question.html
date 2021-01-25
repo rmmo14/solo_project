@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Question</title>
+</head>
+
+<body>
+    <h2>Welcome, {{this_user.first_name}} {{this_user.last_name}}</h2>
+    <p>
+        <a href="/logout">Log Out</a>
+        <a href="/home">Home</a>
+    </p>
+    <h3>Viewing Question # {{this_question.id}}</h3>
+
+    <div>
+        <h4>Topic is:</h4>
+        <p>{{this_question.topics}}</p>
+        <h4>Question is:</h4>
+        <p>{{this_question.description}}</p>
+    </div>
+
+    <div class="solutions">
+        {% if this_solution %} {% for solution in this_solution %}
+        <h4>Solution:</h4>
+        <p> {{solution.attempt}} </p>
+        <a href="/solution/{{solution.id}}">View</a> {% endfor %} {% else %}
+        <h4>Solution: None Yet </h4>
+        {% endif %}
+    </div>
+
+    <h4>Attempt the problem:</h4>
+    <form action="/question_attempt/{{this_question.id}}" method="POST">
+        {% csrf_token %}
+        <label for="attempt">Attempt the problem:</label>
+        <input type="text" name="attempt" id="sol_attempt" value="<YOUR ATTEMPT HERE>">
+        <label for="resource">Add resource link</label>
+        <input type="url" name="resource" id="link">
+        <button type="submit">Attempt</button>
+    </form>
+    <button><a href="/home">Back</a></button>
+</body>
+
+</html>

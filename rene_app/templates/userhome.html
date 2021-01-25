@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged In</title>
+</head>
+
+<body>
+    <h2>Welcome, {{user.first_name}}</h2>
+    <h3>Successfully registered (or logged in)</h3>
+    <p>
+        <a href="/logout">Log Out</a>
+    </p>
+    <div>
+        <h3>Your posted questions:</h3>
+        {% if questions %} {% for question in questions %}
+        <h5>Question # {{question.id}}</h5>
+        <p>Subject: {{question.topics}}</p>
+        <p>{{question.description}}</p>
+        <a href="/question/{{question.id}}">View</a> {% endfor %}{% endif %}
+    </div>
+    <div>
+        <h3>Post a math question</h3>
+        <form action="/post_question" method="POST">
+            {% csrf_token %}
+            <div>
+                <label for="topic" class="qlabel">Math Subject</label>
+                <label for="topic">College Algebra</label>
+                <input type="radio" name="topic" value="algebra">
+                <label for="topic">Precalculus</label>
+                <input type="radio" name="topic" value="precalculus">
+                <label for="topic">Calculus</label>
+                <input type="radio" name="topic" value="calculus">
+                <label for="topic">Calculus 2</label>
+                <input type="radio" name="topic" value="calculus2">
+            </div>
+            <div>
+                <label for="description" class="qlabel">Description</label>
+                <input type="text" name="description" id="book_info">
+                <button type="submit">Post</button>
+            </div>
+    </div>
+    </form>
+</body>
+
+</html>
