@@ -37,6 +37,7 @@ class Question(models.Model):
     topics = models.CharField(max_length=255, choices=topic, default='algebra')
     description = models.TextField()
     uploaded_by = models.ForeignKey(User, related_name="q_posted", on_delete = models.CASCADE)
+    is_solved = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     # https://www.youtube.com/watch?v=OrbQY6-ltww for reference
@@ -44,6 +45,8 @@ class Question(models.Model):
 class Solution(models.Model):
     attempt = models.TextField()
     resource = models.URLField(max_length=200)
+    agrees = models.IntegerField(default=0)
+    solution = models.BooleanField(default=False)
     solution_for = models.ForeignKey(Question, related_name="sol_posted", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

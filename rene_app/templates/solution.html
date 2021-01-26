@@ -34,6 +34,7 @@
     <div class="door">
         <p>
             <a href="/logout">Log Out</a>
+            <a href="/home">Back</a>
         </p>
     </div>
     <h3>Viewing Solution # {{this_solution.id}} for Question # {{this_solution.solution_for.id}}</h3>
@@ -42,8 +43,8 @@
         <p>{{this_solution.solution_for.description}}</p>
         <h4>Solution:</h4>
         <p>{{this_solution.attempt}}</p>
-        <button><a href="/agree">Agree</a></button>
-        <button><a href="/refute">Refute</a></button>
+        <button><a href="/agree/{{this_solution.id}}">Agree</a></button>
+        <button><a href="/refute/{{this_solution.id}}">Refute</a></button>
     </div>
 </body>
 

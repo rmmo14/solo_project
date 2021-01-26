@@ -23,7 +23,6 @@ def register(request):
     else:
         password = request.POST['password']
         pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-        print('hash', User.objects.all())
         new_user = User.objects.create(
             first_name = request.POST['first_name'],
             last_name = request.POST['last_name'],
@@ -37,7 +36,6 @@ def login(request):
     if request.method == "GET":
         return redirect('/')
     user = User.objects.filter(email = request.POST['email'])
-    print('email')
     if user:
         logged_user = user[0]
         if bcrypt.checkpw(request.POST['login_pw'].encode(), logged_user.password.encode()):
@@ -57,14 +55,12 @@ def home(request):
     user = User.objects.get(id = request.session['user_id'])
     my_qs = Question.objects.filter(uploaded_by=user)
     all_qs = Question.objects.all()
-    print('questions posted', my_qs)
     context = {
         'user': user,
         'questions': my_qs,
         'all_questions': all_qs
     }
     request.session['email'] = user.email
-    print(user.email)
     return render(request, "userhome.html", context)
 
 def logout(request):
@@ -73,28 +69,23 @@ def logout(request):
 
 def post(request):
     if 'user_id' not in request.session:
-        print("not in session")
         return redirect('/')
     user = User.objects.get(id = request.session['user_id'])
     if len(request.POST['description']) > 4:
         new_question = Question.objects.create(topics = request.POST['topic'], description=request.POST['description'], uploaded_by=user)
-        print('checking', new_question)
     return redirect(f'/question/{new_question.id}')
 
 def question(request, q_id):
     if 'user_id' not in request.session:
-        print("not in session")
         return redirect('/')
     this_q = Question.objects.get(id=q_id)
     this_user = User.objects.get(id=request.session['user_id'])
     this_solution = Solution.objects.filter(solution_for=this_q)
-    print(this_solution)
     context = {
         'this_question': this_q,
         'this_user': this_user,
         'this_solution': this_solution
     }
-    print('check this:', this_solution)
     return render(request, 'question.html', context)
 
 def attempts(request, q_id):
@@ -109,7 +100,6 @@ def attempts(request, q_id):
 
 def solutions(request, sol_id):
     if 'user_id' not in request.session:
-        print("not in session")
         return redirect('/')
     this_solution = Solution.objects.get(id=sol_id)
     context = {
@@ -122,12 +112,33 @@ def comm_posts(request):
     # and it should render them on html
     pass
 
-def agree(request):
-    # need to write functino on what to do when agree. thinking if they agree at least 4 times (considering refutes as negatives)
-    # then the answer is marked as solved and can no longer be agreed/refuted
-    pass
+def agree(request, sol_id):
+    c = Solution.objects.get(id=sol_id)
+    c.agrees+=1
+    if (c.agrees >= 3):
+        c.solution = True
+        x = c.solution_for.id
+        y = Question.objects.get(id=x)
+        y.is_solved = True
+        y.save()
+        c.save()
+        return redirect(f'/question/{c.solution_for.id}')
+    c.save()
+    return redirect(f'/solution/{c.id}')
 
-def refute(request):
-    # need to write function on what to do when refuted. If at least 4 refutes then the solution is marked wrong.
-    # then the question would be open for answering
-    pass
+def refute(request, sol_id):
+    c = Solution.objects.get(id=sol_id)
+    c.agrees-=1
+    if (c.agrees < -2):
+        c.delete()
+        return redirect(f'/question/{c.solution_for.id}')
+    if (c.agrees < 3):
+        c.solution = False
+        x = c.solution_for.id
+        y = Question.objects.get(id=x)
+        y.is_solved = False
+        y.save()
+        c.save()
+        return redirect(f'/question/{c.solution_for.id}')
+    c.save()
+    return redirect(f'/solution/{c.id}')

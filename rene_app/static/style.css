@@ -1,7 +1,7 @@
 body {
     outline: yellow 2px solid;
     width: 75em;
-    height: 45em;
+    height: 50em;
     margin: 0 5em;
 }
 
@@ -194,3 +194,11 @@ input {
 .single_qs {
     padding: 0.25em 0;
 }
+
+
+/* #tis_solved h3,
+h4 {
+    color: blue;
+    width: 10em;
+    display: block;
+} */

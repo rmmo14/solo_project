@@ -8,6 +8,12 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'reset.css' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            console.log('jquery working');
+        });
+    </script>
 </head>
 
 <body>
@@ -44,7 +50,14 @@
             <h4>Question is:</h4>
             <p>{{this_question.description}}</p>
         </div>
-
+        <div id="tis_solved">
+            <h4>This question is:</h4>
+            {% if this_question.is_solved == True %}
+            <h3>Solved</h3>
+            {% else %}
+            <h3>Not Solved</h3>
+            {% endif %}
+        </div>
         <div id="comm_qs">
             {% if this_solution %} {% for solution in this_solution %}
             <h4>Solution:</h4>
