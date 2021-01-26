@@ -56,10 +56,12 @@ def home(request):
         return redirect('/')
     user = User.objects.get(id = request.session['user_id'])
     my_qs = Question.objects.filter(uploaded_by=user)
+    all_qs = Question.objects.all()
     print('questions posted', my_qs)
     context = {
         'user': user,
-        'questions': my_qs
+        'questions': my_qs,
+        'all_questions': all_qs
     }
     request.session['email'] = user.email
     print(user.email)
@@ -114,3 +116,18 @@ def solutions(request, sol_id):
         'this_solution': this_solution
     }
     return render(request, 'solution.html', context)
+    
+def comm_posts(request):
+    # this function should display all the questions posted by all
+    # and it should render them on html
+    pass
+
+def agree(request):
+    # need to write functino on what to do when agree. thinking if they agree at least 4 times (considering refutes as negatives)
+    # then the answer is marked as solved and can no longer be agreed/refuted
+    pass
+
+def refute(request):
+    # need to write function on what to do when refuted. If at least 4 refutes then the solution is marked wrong.
+    # then the question would be open for answering
+    pass

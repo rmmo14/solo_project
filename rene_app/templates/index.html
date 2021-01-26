@@ -5,36 +5,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home for Math Site</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'reset.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 
 <body>
-    <h2>Registration</h2>
-    {% for message in messages %}
-    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}> {{message}}</li>
-    {% endfor %}
-    <form action="/register" method="POST">
-        {% csrf_token %}
-        <label for="first_name">First Name</label>
-        <input type="text" name="first_name" id="user_info">
-        <label for="last_name">Last Name</label>
-        <input type="text" name="last_name" id="user_info">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="user_info">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="user_info">
-        <label for="confirm_pw">Confirm PW</label>
-        <input type="password" name="confirm_pw" id="user_info">
-        <button>Register</button>
-    </form>
-    <h2>Login</h2>
-    <form action="/login" method="POST">
-        {% csrf_token %}
-        <label for="email">Email</label>
-        <input type="email" name="email" id="user_login">
-        <label for="login_pw">Password</label>
-        <input type="password" name="login_pw" id="user_login">
-        <button>Login</button>
-    </form>
+    <div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/home">Home</a>
+                </li>
+                <li>
+                    <a href="">About</a>
+                </li>
+                <li>
+                    <a href="">Community Posts</a>
+                </li>
+                <li>
+                    <a href="">Resources Available</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <h1>Welcome to Math+C</h1>
+
+
+    <div id="wrapper">
+        <div id="overview">
+            <h3>Overview</h3>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore, voluptates autem? Labore accusamus harum optio ut, earum provident cum odit. Reiciendis, at quis accusantium voluptatibus fuga nesciunt corporis fugit minima?</p>
+        </div>
+        <div id="picsofus">
+            <img src="https://via.placeholder.com/200x200/ccc.png" alt="">
+            <img src="https://via.placeholder.com/200x200/ccc.png" alt="">
+            <img src="https://via.placeholder.com/200x200/ccc.png" alt="">
+            <img src="https://via.placeholder.com/200x200/ccc.png" alt="">
+        </div>
+    </div>
+    <div id="userx">
+        <div id="login">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+                <label for="email">Email</label>
+                <input type="email" name="email" id="user_login">
+                <label for="login_pw">Password</label>
+                <input type="password" name="login_pw" id="user_login">
+                <button>Login</button>
+            </form>
+        </div>
+        <div id="registration">
+            <h2>Registration</h2>
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}> {{message}}</li>
+            {% endfor %}
+            <form action="/register" method="POST">
+                {% csrf_token %}
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" id="user_info">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" id="user_info">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="user_info">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="user_info">
+                <label for="confirm_pw">Confirm PW</label>
+                <input type="password" name="confirm_pw" id="user_info">
+                <button>Register</button>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

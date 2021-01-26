@@ -1,0 +1,196 @@
+body {
+    outline: yellow 2px solid;
+    width: 75em;
+    height: 45em;
+    margin: 0 5em;
+}
+
+h1 {
+    outline: 2px solid blue;
+    display: block;
+    font-size: 2em;
+    margin: 1em 0;
+    margin-left: 0.25em;
+    font-weight: bold;
+    padding: 0.25em 0;
+    width: 25em;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin: 0.83em 0;
+    font-weight: bold;
+}
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin: 1em 0;
+    font-weight: bold;
+}
+
+h4 {
+    display: block;
+    font-size: 1em;
+    margin: 1.33em 0;
+    font-weight: bold;
+}
+
+h5 {
+    display: block;
+    font-size: .83em;
+    margin: 1.67em 0;
+    font-weight: bold;
+}
+
+h6 {
+    display: block;
+    font-size: .67em;
+    margin: 2.33em 0;
+    font-weight: bold;
+}
+
+p {
+    display: block;
+    margin: 1em 0;
+}
+
+nav {
+    outline: 2px solid blue;
+    margin: 0 12em;
+    height: 4em;
+    width: 50em;
+    text-align: center;
+}
+
+ul {
+    display: block;
+    list-style-type: none;
+    margin-top: 3em;
+    margin-bottom: 1 em;
+    margin-left: 1em;
+    margin-right: 0;
+    padding-left: 40px;
+}
+
+li {
+    display: inline-block;
+    font-size: large;
+    margin-right: 5em;
+    margin-top: 1em;
+}
+
+div {
+    outline: 2px solid blue;
+}
+
+#registration {
+    width: 10em;
+    padding: 0 0.25em;
+}
+
+#login {
+    width: 10em;
+    padding: 0 0.25em;
+}
+
+#overview {
+    display: inline-block;
+    /* vertical-align: top; */
+    margin-top: 0.5em;
+    margin-left: 5em;
+    width: 50em;
+}
+
+#wrapper {
+    margin-left: 0.5em;
+    margin-top: 3em;
+    width: 60.5em;
+    display: inline-block;
+}
+
+#userx {
+    padding: 0 0.75em 1.25em 0.75em;
+    vertical-align: top;
+    float: right;
+    margin-right: 0.5em;
+}
+
+#picsofus {
+    margin-left: 0.5em;
+    margin-top: 5em;
+    margin-bottom: 0.5em;
+    width: 59.5em;
+}
+
+#picsofus>img {
+    margin-left: 1.75em;
+}
+
+#feed_qs {
+    width: 35em;
+    margin-left: 0.5em;
+    display: inline-block;
+}
+
+#feed_qs div {
+    margin: 1em;
+    padding-left: 0.5em;
+}
+
+#your_qs {
+    width: 15em;
+    display: inline-block;
+    overflow-y: scroll;
+}
+
+#comm_qs {
+    width: 15em;
+    height: 25em;
+    float: right;
+    overflow-y: scroll;
+}
+
+#post_q {
+    margin-right: 1em;
+    width: 35em;
+    float: right;
+}
+
+#post_q div {
+    margin: 0.5em 0;
+    padding: 0.25em 0;
+}
+
+.qlabel {
+    margin-right: 0.75em;
+}
+
+#q_desc {
+    width: 25em;
+    height: 9em;
+}
+
+#sol_attempt {
+    width: 25em;
+    height: 5em;
+}
+
+input {
+    text-align: justify;
+    /* vertical-align: top; */
+}
+
+#view_sol {
+    width: 25em;
+    margin-left: 0.5em;
+}
+
+.door {
+    width: 10em;
+}
+
+.single_qs {
+    padding: 0.25em 0;
+}

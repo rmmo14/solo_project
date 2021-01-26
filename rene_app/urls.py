@@ -11,4 +11,7 @@ urlpatterns = [
     path('question/<int:q_id>', views.question),
     path('question_attempt/<int:q_id>', views.attempts),
     path('solution/<int:sol_id>', views.solutions),
+    path('comm_posts', views.comm_posts),
+    path('agree', views.agree),
+    path('refute', views.refute),
 ]

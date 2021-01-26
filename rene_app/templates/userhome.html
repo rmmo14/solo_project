@@ -5,23 +5,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logged In</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'reset.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 
 <body>
-    <h2>Welcome, {{user.first_name}}</h2>
-    <h3>Successfully registered (or logged in)</h3>
-    <p>
-        <a href="/logout">Log Out</a>
-    </p>
     <div>
-        <h3>Your posted questions:</h3>
-        {% if questions %} {% for question in questions %}
-        <h5>Question # {{question.id}}</h5>
-        <p>Subject: {{question.topics}}</p>
-        <p>{{question.description}}</p>
-        <a href="/question/{{question.id}}">View</a> {% endfor %}{% endif %}
+        <nav>
+            <ul>
+                <li>
+                    <a href="/home">Home</a>
+                </li>
+                <li>
+                    <a href="">About</a>
+                </li>
+                <li>
+                    <a href="/comm_posts">Community Posts</a>
+                </li>
+                <li>
+                    <a href="">Resources Available</a>
+                </li>
+            </ul>
+        </nav>
     </div>
-    <div>
+
+    <h1>Welcome to Math+C, {{user.first_name}}</h1>
+    <h3>You have successfully registered (or logged in)</h3>
+    <div class="door">
+        <p>
+            <a href="/logout">Log Out</a>
+        </p>
+    </div>
+    <div id="feed_qs">
+        <div id="your_qs">
+            <h3>Your posted questions:</h3>
+            {% if questions %} {% for question in questions %}
+            <div class="single_qs">
+                <h5>Question # {{question.id}}</h5>
+                <p>Subject: {{question.topics}}</p>
+                <p>{{question.description}}</p>
+                <a href="/question/{{question.id}}">View</a>
+            </div>
+            {% endfor %}{% endif %}
+        </div>
+        <div id="comm_qs">
+            <h3>Community Posted Questions:</h3>
+            {% if all_questions %}{% for question in all_questions %}
+            <div class="single_qs">
+                <h5>Question # {{question.id}}</h5>
+                <p>Subject: {{question.topics}}</p>
+                <h6>Posted by: {{question.uploaded_by.first_name}}</h6>
+                <p>{{question.description}}</p>
+                <a href="/question/{{question.id}}">View</a>
+            </div>
+            {% endfor %}{% endif %}
+        </div>
+    </div>
+    <div id="post_q">
         <h3>Post a math question</h3>
         <form action="/post_question" method="POST">
             {% csrf_token %}
@@ -38,7 +79,7 @@
             </div>
             <div>
                 <label for="description" class="qlabel">Description</label>
-                <input type="text" name="description" id="book_info">
+                <input type="text" name="description" id="q_desc">
                 <button type="submit">Post</button>
             </div>
     </div>
