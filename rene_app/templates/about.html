@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'reset.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="/home">Home</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+            <li>
+                <a href="/comm_posts">Community Posts</a>
+            </li>
+            <li>
+                <a href="/resources">Resources Available</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h1>Welcome to Math+C: About This Site</h1>
+    <div id="about_us">
+        <div class="about_cols">
+            <h2>Let's Collaborate!</h2>
+            <p>
+                Work with a community of users to solve various levels of math problems. If there is a solution posted, and the question is solved, still contribute to show multiple ways to the same solution. If you do not agree with a posted solutin, refute it and if
+                a minimum of 3 users refute it then that solution will be deleted.
+            </p>
+        </div>
+        <div class="about_cols">
+            <h2>Future Updates</h2>
+            <p>
+                In the coming weeks, the site will show a chart for the history of each solutions agree and refute record. There will also be improvements on agreeing where it does not allow the posting user to agree to their own solution. Eventually we will be integrating
+                math text programming so users can copy and paste their problems when neeeded.
+            </p>
+            <h2>Example of Subjects</h2>
+            <p>
+                For the moment, we will be hosting questions for topics in College Algebra, Precaclculus, Calculus 1, and Calculus 2. With the updates to come, there will be room for a wider range of math subjects.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

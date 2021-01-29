@@ -11,41 +11,91 @@
 </head>
 
 <body>
-    <div>
-        <nav>
-            <ul>
-                <li>
-                    <a href="/home">Home</a>
-                </li>
-                <li>
-                    <a href="">About</a>
-                </li>
-                <li>
-                    <a href="">Community Posts</a>
-                </li>
-                <li>
-                    <a href="">Resources Available</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <nav>
+        <ul>
+            <li>
+                <a href="/home">Home</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+            <li>
+                <a href="/comm_posts">Community Posts</a>
+            </li>
+            <li>
+                <a href="">Resources Available</a>
+            </li>
+        </ul>
+    </nav>
 
-    <h1>Welcome to Math+C, {{user.first_name}}</h1>
+    <h1>Welcome to Math+C, {{this_user.first_name}} {{this_user.last_name}}</h1>
     <div class="door">
         <p>
-            <a href="/logout">Log Out</a>
+            <a href="/logout">Log Out</a> |
             <a href="/home">Back</a>
         </p>
     </div>
     <h3>Viewing Solution # {{this_solution.id}} for Question # {{this_solution.solution_for.id}}</h3>
     <div id="view_sol">
-        <h4>Question: </h4>
-        <p>{{this_solution.solution_for.description}}</p>
-        <h4>Solution:</h4>
-        <p>{{this_solution.attempt}}</p>
-        <button><a href="/agree/{{this_solution.id}}">Agree</a></button>
-        <button><a href="/refute/{{this_solution.id}}">Refute</a></button>
+        <div>
+            <h4>Question: </h4>
+            <p>{{this_solution.solution_for.description}}</p>
+            <h4>Solution:</h4>
+            <p>{{this_solution.attempt}}</p>
+            <button><a href="/agree/{{this_solution.id}}">Agree</a></button>
+            <button><a href="/refute/{{this_solution.id}}">Refute</a></button>
+            <h6 class="agrees">Agrees: {{this_solution.agrees}}</h6>
+        </div>
     </div>
+    <div>
+        <p>My chart</p>
+        <canvas id="line-chart"></canvas>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js "></script>
+    <!-- <script type="javascript " src="{% static 'script.js' %} "></script> -->
+    <script>
+        function createGraph() {
+            new Chart(document.getElementById("line-chart ").getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050],
+                    datasets: [{
+                        data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
+                        label: "Africa ",
+                        borderColor: "#3e95cd ",
+                        fill: false
+                    }, {
+                        data: [282, 350, 411, 502, 635, 809, 947, 1402, 3700, 5267],
+                        label: "Asia ",
+                        borderColor: "#8e5ea2 ",
+                        fill: false
+                    }, {
+                        data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734],
+                        label: "Europe ",
+                        borderColor: "#3cba9f ",
+                        fill: false
+                    }, {
+                        data: [40, 20, 10, 16, 24, 38, 74, 167, 508, 784],
+                        label: "Latin America ",
+                        borderColor: "#e8c3b9 ",
+                        fill: false
+                    }, {
+                        data: [6, 3, 2, 2, 7, 26, 82, 172, 312, 433],
+                        label: "North America ",
+                        borderColor: "#c45850 ",
+                        fill: false
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'World population per region (in millions)'
+                    }
+                }
+            });
+        }
+        createGraph();
+    </script>
 </body>
 
 </html>

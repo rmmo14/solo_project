@@ -11,24 +11,22 @@
 </head>
 
 <body>
-    <div>
-        <nav>
-            <ul>
-                <li>
-                    <a href="/home">Home</a>
-                </li>
-                <li>
-                    <a href="">About</a>
-                </li>
-                <li>
-                    <a href="">Community Posts</a>
-                </li>
-                <li>
-                    <a href="">Resources Available</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <nav>
+        <ul>
+            <li>
+                <a href="/home">Home</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+            <li>
+                <a href="/comm_posts">Community Posts</a>
+            </li>
+            <li>
+                <a href="/resources">Resources Available</a>
+            </li>
+        </ul>
+    </nav>
 
     <h1>Welcome to Math+C</h1>
 
@@ -36,13 +34,16 @@
     <div id="wrapper">
         <div id="overview">
             <h3>Overview</h3>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore, voluptates autem? Labore accusamus harum optio ut, earum provident cum odit. Reiciendis, at quis accusantium voluptatibus fuga nesciunt corporis fugit minima?</p>
+            <p>
+                This is a website that designed for a community of users to help each other out with math. Once you register, you will be able to post and solve any math questions posted. A solution is labeled as solved if it is agreed on by at least 3 users. If the
+                solution is refuted more than twice, then it is automatically deleted.
+            </p>
         </div>
         <div id="picsofus">
-            <img src="https://via.placeholder.com/200x200/ccc.png" alt="">
-            <img src="https://via.placeholder.com/200x200/ccc.png" alt="">
-            <img src="https://via.placeholder.com/200x200/ccc.png" alt="">
-            <img src="https://via.placeholder.com/200x200/ccc.png" alt="">
+            <img src="{% static 'img/math2.png' %}" alt="rational problems">
+            <img src="{% static 'img/math1.png' %}" alt="pemdas">
+            <img src="{% static 'img/math3.gif' %}" alt="integral">
+            <!-- <img src="{% static 'img/math4.jpeg' %}" alt=""> -->
         </div>
     </div>
     <div id="userx">

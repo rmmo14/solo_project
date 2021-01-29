@@ -17,26 +17,24 @@
 </head>
 
 <body>
-    <div>
-        <nav>
-            <ul>
-                <li>
-                    <a href="/home">Home</a>
-                </li>
-                <li>
-                    <a href="">About</a>
-                </li>
-                <li>
-                    <a href="">Community Posts</a>
-                </li>
-                <li>
-                    <a href="">Resources Available</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <nav>
+        <ul>
+            <li>
+                <a href="/home">Home</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+            <li>
+                <a href="/comm_posts">Community Posts</a>
+            </li>
+            <li>
+                <a href="/resources">Resources Available</a>
+            </li>
+        </ul>
+    </nav>
 
-    <h1>Welcome to Math+C, {{user.first_name}}</h1>
+    <h1>Welcome to Math+C, {{this_user.first_name}} {{this_user.last_name}}</h1>
     <div class="door">
         <p>
             <a href="/logout">Log Out</a>
@@ -45,30 +43,36 @@
     <h2>Viewing Question # {{this_question.id}}</h2>
     <div id="feed_qs">
         <div id="your_qs">
-            <h4>Topic is:</h4>
-            <p>{{this_question.topics}}</p>
-            <h4>Question is:</h4>
-            <p>{{this_question.description}}</p>
+            <div class="single_qs">
+                <h3>Topic is:</h3>
+                <p class="topic_q">{{this_question.topics}}</p>
+                <h3>Question is:</h3>
+                <p class="topic_q">{{this_question.description}}</p>
+            </div>
         </div>
         <div id="tis_solved">
-            <h4>This question is:</h4>
+            <h3>This question is:</h3>
             {% if this_question.is_solved == True %}
             <h3>Solved</h3>
             {% else %}
             <h3>Not Solved</h3>
             {% endif %}
         </div>
-        <div id="comm_qs">
+        <div id="comm_q2">
             {% if this_solution %} {% for solution in this_solution %}
-            <h4>Solution:</h4>
-            <p> {{solution.attempt}} </p>
-            <a href="/solution/{{solution.id}}">View</a> {% endfor %} {% else %}
+            <div class="single_qs">
+                <h4>Solution:</h4>
+                <p> {{solution.attempt}} </p>
+                <a href="/solution/{{solution.id}}">View</a>
+                <h5 class="agrees">Agrees: {{solution.agrees}}</h5>
+            </div>
+            {% endfor %} {% else %}
             <h4>Solution: None Yet </h4>
             {% endif %}
         </div>
     </div>
     <div id="post_q">
-        <h4>Attempt the problem:</h4>
+        <h4>Attempt the problem?</h4>
         <form action="/question_attempt/{{this_question.id}}" method="POST">
             {% csrf_token %}
             <div>
@@ -76,12 +80,14 @@
                 <input type="text" name="attempt" id="sol_attempt" value="<YOUR ATTEMPT HERE>">
             </div>
             <div>
-                <label for="resource" class="qlabel">Add resource link</label>
+                <label for="resource" class="qlabel">Add a resource link</label>
                 <input type="url" name="resource" id="link">
             </div>
-            <button type="submit">Attempt</button>
+            <div>
+                <button type="submit">Attempt</button>
+                <button id="go_back"><a href="/home">Back</a></button>
+            </div>
         </form>
-        <button><a href="/home">Back</a></button>
     </div>
 </body>
 

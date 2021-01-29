@@ -14,4 +14,6 @@ urlpatterns = [
     path('comm_posts', views.comm_posts),
     path('agree/<int:sol_id>', views.agree),
     path('refute/<int:sol_id>', views.refute),
+    path('about', views.about),
+    path('resources', views.resources),
 ]

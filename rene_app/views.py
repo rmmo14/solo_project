@@ -78,6 +78,7 @@ def post(request):
 def question(request, q_id):
     if 'user_id' not in request.session:
         return redirect('/')
+    # print('also check', Question.objects.all())
     this_q = Question.objects.get(id=q_id)
     this_user = User.objects.get(id=request.session['user_id'])
     this_solution = Solution.objects.filter(solution_for=this_q)
@@ -102,15 +103,21 @@ def solutions(request, sol_id):
     if 'user_id' not in request.session:
         return redirect('/')
     this_solution = Solution.objects.get(id=sol_id)
+    this_user = User.objects.get(id=request.session['user_id'])
     context = {
-        'this_solution': this_solution
+        'this_solution': this_solution,
+        'this_user': this_user
     }
     return render(request, 'solution.html', context)
     
 def comm_posts(request):
-    # this function should display all the questions posted by all
-    # and it should render them on html
-    pass
+    x = Question.objects.filter(is_solved=True)
+    y =Question.objects.filter(is_solved=False)
+    context = {
+        'solved': x,
+        'unsolved':y
+    }
+    return render(request, 'community.html', context)
 
 def agree(request, sol_id):
     c = Solution.objects.get(id=sol_id)
@@ -124,7 +131,8 @@ def agree(request, sol_id):
         c.save()
         return redirect(f'/question/{c.solution_for.id}')
     c.save()
-    return redirect(f'/solution/{c.id}')
+    # print('check', c.id)
+    return redirect(f'/question/{c.solution_for.id}')
 
 def refute(request, sol_id):
     c = Solution.objects.get(id=sol_id)
@@ -141,4 +149,29 @@ def refute(request, sol_id):
         c.save()
         return redirect(f'/question/{c.solution_for.id}')
     c.save()
-    return redirect(f'/solution/{c.id}')
+    return redirect(f'/question/{c.solution_for.id}')
+
+def about(request):
+    return render(request, 'about.html')
+
+def resources (request):
+    solved_ques = Question.objects.filter(is_solved = True)
+    if (solved_ques):
+        arr = []
+        print('check', solved_ques)
+        for solved in solved_ques:
+            x = Solution.objects.filter(solution_for=solved)
+            print('and here', len(x))
+            # arr.append(x)
+            y = len(x)
+            print('array', x)
+            while (y > 0):
+                print('length', x[y-1].resource)
+                arr.append(x[y-1].resource)
+                y-=1
+        context = {
+            'solved': solved_ques,
+            'solutions': arr
+        }
+        print('end', arr)
+    return render(request, 'resources.html',context)

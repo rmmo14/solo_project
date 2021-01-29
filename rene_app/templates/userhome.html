@@ -11,27 +11,26 @@
 </head>
 
 <body>
-    <div>
-        <nav>
-            <ul>
-                <li>
-                    <a href="/home">Home</a>
-                </li>
-                <li>
-                    <a href="">About</a>
-                </li>
-                <li>
-                    <a href="/comm_posts">Community Posts</a>
-                </li>
-                <li>
-                    <a href="">Resources Available</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <nav>
+        <ul>
+            <li>
+                <a href="/home">Home</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+            <li>
+                <a href="/comm_posts">Community Posts</a>
+            </li>
+            <li>
+                <a href="/resources">Resources Available</a>
+            </li>
+        </ul>
+    </nav>
 
-    <h1>Welcome to Math+C, {{user.first_name}}</h1>
-    <h3>You have successfully registered (or logged in)</h3>
+
+    <h1>Welcome to Math+C, {{user.first_name}} {{user.last_name}}</h1>
+    <!-- <h3>You have successfully registered (or logged in)</h3> -->
     <div class="door">
         <p>
             <a href="/logout">Log Out</a>
@@ -67,7 +66,7 @@
         <form action="/post_question" method="POST">
             {% csrf_token %}
             <div>
-                <label for="topic" class="qlabel">Math Subject</label>
+                <label for="topic" class="qlabel">Math Subject:</label>
                 <label for="topic">College Algebra</label>
                 <input type="radio" name="topic" value="algebra">
                 <label for="topic">Precalculus</label>
@@ -78,7 +77,7 @@
                 <input type="radio" name="topic" value="calculus2">
             </div>
             <div>
-                <label for="description" class="qlabel">Description</label>
+                <label for="description" class="qlabel">Description:</label>
                 <input type="text" name="description" id="q_desc">
                 <button type="submit">Post</button>
             </div>

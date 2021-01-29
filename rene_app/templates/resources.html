@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources Available</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'reset.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="/home">Home</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+            <li>
+                <a href="/comm_posts">Community Posts</a>
+            </li>
+            <li>
+                <a href="/resources">Resources Available</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h1>Welcome to Math+C: Resources Available</h1>
+
+    <div id="container">
+        <div class="comm_ques">
+            <h4>Solved Questions:</h4>
+            {% if solved %} {% for s in solved %}
+            <div class="comm_all">
+                <h5>Question #{{s.id}}:</h5>
+                <p>{{s.description}}</p>
+            </div>
+            {% endfor %} {% endif %}
+        </div>
+        <div class="comm_ques">
+            <h4>Links to their solution:</h4>
+            {% if solutions %} {% for u in solutions %}
+            <div class="comm_all">
+                <h5>Link:</h5>
+                <p>
+                    <a id="sol_link" href="{{u}}">Solution</a>
+                </p>
+            </div>
+            {% endfor %} {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
